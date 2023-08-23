@@ -73,10 +73,10 @@ const renderModal = (data) =>{
 
     <div class="detail__main">
 
-    <p class="detail__description">${data.description}</p>
+    <p class="detail__description">${data.description.replaceAll("\n", "<br>")}</p>
 
     <ul class="detail__fields">
-        <li class="detail__field">от ${data.salary}₽</li>
+        <li class="detail__field">от ${parseInt(data.salary).toLocaleString()}₽</li>
         <li class="detail__field">${data.type}</li>
         <li class="detail__field">${data.format}</li>
         <li class="detail__field">${data.experience}</li>
