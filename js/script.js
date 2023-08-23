@@ -104,7 +104,6 @@ const renderModal = (data) =>{
     modal.append(modalMain);
     document.body.append(modal);
     window.addEventListener('click', ({target}) =>{
-        console.log(target);
         if (target.classList.contains('modal') || target.tagName == "svg") {
             modal.remove()
         }
@@ -176,10 +175,8 @@ const init = () =>{
 
     cardsList.addEventListener('click', ({target}) =>{
         const vacancyCard = target.closest('.vacancy')
-        console.log(vacancyCard);
         if (vacancyCard) {
             const vacancyId = vacancyCard.dataset.id;
-            // console.log(vacancyId);
             openModal(vacancyId);
         }
     })
