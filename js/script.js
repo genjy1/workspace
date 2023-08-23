@@ -103,6 +103,12 @@ const renderModal = (data) =>{
     modalMain.append(modalClose);
     modal.append(modalMain);
     document.body.append(modal);
+    window.addEventListener('click', ({target}) =>{
+        console.log(target);
+        if (target.classList.contains('modal') || target.tagName == "svg") {
+            modal.remove()
+        }
+    })
 }
 
 const openModal = (id) =>{
@@ -144,7 +150,6 @@ const init = () =>{
     const cityChoices = new Choices(citySelect, {
     itemSelectText: "",
 });
-
 
     getData(
         `${API_URL}${LOCATION_URL}`, 
