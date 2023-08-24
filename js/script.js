@@ -54,7 +54,6 @@ const createDetailVacancy = ({id, logo, company, title, description, salary, typ
 
 
 const renderModal = (data) =>{
-    console.log(data);
     const modal = document.createElement('div');
     modal.classList.add('modal');
     const modalMain = document.createElement('div');
