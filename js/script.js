@@ -18,79 +18,48 @@ const renderError = err =>{
     console.warn(err);
 };
 
-// const createDetailVacancy = (data) =>{
-//     `
-//     <article class="detail">
-
-//     <div class="detail__header">
-
-//         <img src="" alt="" class="detail__logo">
-
-//         <p class="detail__company"></p>
-
-//         <h2 class="detail__title"></h2>
-
-//         <div class="detail__main">
-
-//             <p class="detail__description"></p>
-
-//             <ul class="detail__fields">
-//                 <li class="detail__field"></li>
-//                 <li class="detail__field"></li>
-//                 <li class="detail__field"></li>
-//                 <li class="detail__field"></li>
-//                 <li class="detail__field"></li>
-//             </ul>
-
-//         </div>
-
-//     </div>
-
-//     <p class="detail__resume">
-//         <a href="mailto:" class="blue-text"></a>
-//     </p>
-// </article>
-//     `
-// }
-
-const renderModal = (data) =>{
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    const modalMain = document.createElement('div');
-    modalMain.classList.add('modal__main');
-    modalMain.innerHTML = `
+const createDetailVacancy = ({id, logo, company, title, description, salary, type, format, experience, location, email,}) => `
     <article class="detail">
 
     <div class="detail__header">
 
-        <img src="${API_URL}${data.logo}" alt="Логотип компании ${data.company}" class="detail__logo">
+        <img src="${API_URL}${logo}" alt="Логотип компании ${company}" class="detail__logo">
 
-        <p class="detail__company">${data.company}</p>
+        <p class="detail__company">${company}</p>
 
-        <h2 class="detail__title">${data.title}</h2>
+        <h2 class="detail__title">${title}</h2>
 
     </div>
 
     <div class="detail__main">
 
-    <p class="detail__description">${data.description.replaceAll("\n", "<br>")}</p>
+    <p class="detail__description">${description.replaceAll("\n", "<br>")}</p>
 
     <ul class="detail__fields">
-        <li class="detail__field">от ${parseInt(data.salary).toLocaleString()}₽</li>
-        <li class="detail__field">${data.type}</li>
-        <li class="detail__field">${data.format}</li>
-        <li class="detail__field">${data.experience}</li>
-        <li class="detail__field">${data.location}</li>
+        <li class="detail__field">от ${parseInt(salary).toLocaleString()}₽</li>
+        <li class="detail__field">${type}</li>
+        <li class="detail__field">${format}</li>
+        <li class="detail__field">${experience}</li>
+        <li class="detail__field">${location}</li>
     </ul>
 
 </div>
 
     <p class="detail__resume">
         Отправляйте резюме на
-        <a href="mailto:${data.email}" class="blue-text">${data.email}</a>
+        <a href="mailto:${email}" class="blue-text">${email}</a>
     </p>
 </article>
     `;
+
+
+const renderModal = (data) =>{
+    console.log(data);
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    const modalMain = document.createElement('div');
+    modalMain.classList.add('modal__main');
+    modalMain.innerHTML = createDetailVacancy(data);
     const modalClose = document.createElement('button');
     modalClose.innerHTML = `
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
