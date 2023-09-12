@@ -1,33 +1,42 @@
-.vacancy{
-    background-color: #fff;
-    padding: 16px;
-    border-radius: 16px;
-    height: 100%;
-    cursor: pointer;
+.vacancy {
+  border-radius: 16px;
+  background-color: #fff;
+  padding: 16px;
+  height: 100%;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid transparent;
 }
 
-.vacancy__title{
-    padding: 3px 5px;
-    border-radius: 4px;
-    background: #EAECFF;
-    font-size: 14px;
-    font-weight: 400;
-    color: #171717;
-    max-width: 169px;
-    display: inline-block;
-    margin-bottom: 8px;
+.vacancy:hover {
+  background-color: #f9faff;
 }
 
-.vacancy__img{
-    max-height: 44px;
-    margin-bottom: 12px;
-    display: block;
+.vacancy:focus-visible {
+  border-color: #a6adff;
 }
 
-.vacancy__company{
-    margin-bottom: 8px;
+.vacancy__img {
+  max-height: 44px;
+  margin-bottom: 12px;
+  display: block;
 }
 
-.vacancy__field{
-    color: #CCC;
+.vacancy__company {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.vacancy__title {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  background-color: #eaecff;
+  margin-bottom: 8px;
+}
+
+.vacancy__field {
+  color: #ccc;
 }
