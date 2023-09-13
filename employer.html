@@ -15,7 +15,9 @@
 <body>
   <header class="header">
     <div class="container header__container">
-      <img class="header__logo" src="img/logo.svg" alt="Логитип WorkSpace">
+      <a href="index.html">
+        <img class="header__logo" src="img/logo.svg" alt="Логитип WorkSpace">
+      </a>
 
       <a class="header__link" href="index.html#vacancies">Посмотреть вакансии</a>
     </div>
@@ -26,18 +28,18 @@
       <div class="container">
         <h1 class="employer__title">Создай свою вакансию</h1>
 
-        <form class="employer">
+        <form class="employer__form">
           <div class="employer__file file">
             <div class="file__wrap-preview">
               <img src="" alt="" class="file__preview">
             </div>
             <div class="file__wrap-btn">
               <label for="logo" class="file__label">+ загрузить лого</label>
-              <input type="file" name="logo" id="logo" class="file__input" accept="image/png, image/jpeg">
+              <input type="file" name="logo" id="logo" class="file__input" accept="image/png, image/jpeg" required>
             </div>
           </div>
 
-          <fieldset class="employer__fieldset-input">
+          <fieldset class="employer__fieldset employer__fieldset_input">
             <div class="employer__wrap-input">
               <label for="company" class="employer__label">
                 Название компании
@@ -70,7 +72,7 @@
             </div>
           </fieldset>
 
-          <fieldset class="employer__fieldset-textarea">
+          <fieldset class="employer__fieldset">
             <label for="desciption" class="employer__label">Описание вакансии</label>
             <textarea name="description" id="description" class="employer__textarea" placeholder="Добавьте всю необходимую для соискателя информацию"></textarea>
           </fieldset>
