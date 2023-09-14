@@ -184,7 +184,8 @@ const closeFilter = (btn, dropDown, classNameBtn, classNameDd) => {
 };
 
 const init = () => {
-  const filterForm = document.querySelector(".filter__form");
+  try {
+    const filterForm = document.querySelector(".filter__form");
   const vacanciesFilterBtn = document.querySelector(".vacancies__filter-btn");
   const vacanciesFilter = document.querySelector(".vacancies__filter");
 
@@ -295,6 +296,84 @@ const init = () => {
         );
       });
   });
+  } catch (error) {
+    console.warn('Мы не на index.html');
+    console.warn(error);
+  }
+
+  try {
+    const validationForm = (form) =>{
+      const validate = new JustValidate(form, {
+        errorsContainer: document.querySelector('.employer__error')
+      });
+
+      validate
+        .addField("#logo",
+        [{
+          rule:'minFilesCount', value: 1, errorMessage: 'Добавьте логотип'}, 
+          {rule:"files", 
+            value: {
+              files:{
+                extensions: ['jpeg', 'png', 'jpg'],
+                maxSize:102400,
+                minSize: 1000,
+                types: ['image/jpg', 'image/png'],
+              },
+            },
+            errorMessage: 'Размер файла не должен быть больше 100кб'
+          }
+        ]
+      )
+        .addField("#company", [{rule: "required", errorMessage: "Заполните название компании"}])
+        .addField("#title", [{rule: "required", errorMessage: "Заполните название вакансии"}])
+        .addField("#salary", [{rule: "required", errorMessage: "Заполните зарплату"}])
+        .addField("#location", [{rule: "required", errorMessage: "Заполните город"}])
+        .addField("#email", [{rule: "required", errorMessage: "Заполните электронную почту"}])
+        .addField("#description", [{rule: "required", errorMessage: "Заполните описание"}])
+        .addRequiredGroup("#format", "Выберите формат")
+        .addRequiredGroup("#experience", "Выберите опыт")
+        .addRequiredGroup("#type", "Выберите занятость");
+    };
+
+    const fileControler = () =>{
+      const file = document.querySelector('.file');
+      const preview = file.querySelector('.file__preview');
+      const input = file.querySelector('.file__input');
+
+      input.addEventListener('change', (event) =>{
+        if (event.target.files.length > 0) {
+          const src = URL.createObjectURL(event.target.files[0]);
+          file.classList.add('file_active');
+          preview.src = src;
+          preview.style.display = "block";
+          console.log(src);
+        } else{
+          file.classList.remove('file_active')
+          preview.src = "";
+          preview.style.display = "none"
+        }
+      })
+    }
+
+    const formControler = () =>{
+      const form = document.querySelector('.employer__form');
+
+      validationForm(form)
+
+      form.addEventListener('submit', (e) =>{
+        e.preventDefault();
+
+        
+      })
+      console.log(form);
+    }
+
+    fileControler()
+    formControler()
+  } catch (error) {
+    console.warn('Мы не на employer.html');
+    console.warn(error);
+  }
 };
 
 init();
