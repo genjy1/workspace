@@ -1,6 +1,6 @@
-#[workspace](https://genjy1.github.io/workspace)
+# [workspace](https://genjy1.github.io/workspace)
 
-##Использованные технологии:
+## Использованные технологии:
 
 *HTML5
 *CSS3
