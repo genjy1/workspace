@@ -2,9 +2,9 @@
 
 ## Использованные технологии:
 
-*HTML5
-*CSS3
-*Native JavaScript ES6
-*REST API
-*JSON
+* HTML5
+* CSS3
+* Native JavaScript ES6
+* REST API
+* JSON
 
