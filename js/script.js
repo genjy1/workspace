@@ -1,4 +1,4 @@
-const API_URL = "https://workspace-methed.vercel.app/";
+const API_URL = "https://flash-marsh-quokka.glitch.me/";
 const LOCATION_URL = "api/locations";
 const VACANCY_URL = "api/vacancy";
 
@@ -304,6 +304,13 @@ const init = () => {
   try {
     const validationForm = (form) =>{
       const validate = new JustValidate(form, {
+        errorLabelStyle:{
+          color:"#f00"
+        },
+        errorFieldStyle:{
+          borderColor:"#f00"
+        },
+        errorFieldCssClass: "invalid",
         errorsContainer: document.querySelector('.employer__error')
       });
 
@@ -322,18 +329,19 @@ const init = () => {
             },
             errorMessage: 'Размер файла не должен быть больше 100кб'
           }
-        ]
-      )
+        ])
         .addField("#company", [{rule: "required", errorMessage: "Заполните название компании"}])
         .addField("#title", [{rule: "required", errorMessage: "Заполните название вакансии"}])
         .addField("#salary", [{rule: "required", errorMessage: "Заполните зарплату"}])
         .addField("#location", [{rule: "required", errorMessage: "Заполните город"}])
-        .addField("#email", [{rule: "required", errorMessage: "Заполните электронную почту"}])
+        .addField("#email", [{rule: "required", errorMessage: "Заполните электронную почту"}, {rule:'email', errorMessage:"Введите корректный email"}])
         .addField("#description", [{rule: "required", errorMessage: "Заполните описание"}])
         .addRequiredGroup("#format", "Выберите формат")
         .addRequiredGroup("#experience", "Выберите опыт")
         .addRequiredGroup("#type", "Выберите занятость");
-    };
+
+      return validate
+      };
 
     const fileControler = () =>{
       const file = document.querySelector('.file');
@@ -358,14 +366,34 @@ const init = () => {
     const formControler = () =>{
       const form = document.querySelector('.employer__form');
 
-      validationForm(form)
+      const validate = validationForm(form);
 
-      form.addEventListener('submit', (e) =>{
+      form.addEventListener('submit', async(e) =>{
         e.preventDefault();
 
+        if(!validate.isValid) {
+          return;
+        }
+        try {
+          
+          const formData = new FormData(form)
+          const message = document.querySelector('.employer__error');
+          const response = await fetch(`${API_URL}${VACANCY_URL}`, {
+            method:'POST',
+            body:formData,
+          });
+          message.textContent = "Отправка, подождите..."
+          if (response.ok) {
+            window.location.href = "index.html"
+            message.textContent = "";
+          }
+
+        } catch (error) {
+          console.error(error);
+          // message.textContent = "Произошла ошибка";
+        }
         
       })
-      console.log(form);
     }
 
     fileControler()
