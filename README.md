@@ -1,4 +1,4 @@
-#[workspace](https://genjy1.github.io)
+#[workspace](https://genjy1.github.io/workspace)
 
 ##Использованные технологии:
 
