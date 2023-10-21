@@ -1,2 +1,5 @@
 User-agent: *
 Disallow : 650d72c0507ec200083315fd--mayorov.netlify.app/
+
+User-agent: *
+Disallow: register.html
